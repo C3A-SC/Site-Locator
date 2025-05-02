@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Site Locator - Egypt</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/rtl.css" id="rtl-stylesheet" disabled>
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <div class="logo-container">
+                <img src="img/logo.png" alt="Company Logo" id="company-logo">
+                <h1 id="site-title">Company Site Locator</h1>
+            </div>
+            <div class="controls">
+                <button id="language-toggle" class="btn">
+                    <span data-lang="en">العربية</span>
+                    <span data-lang="ar">English</span>
+                </button>
+                <button id="admin-login" class="btn">
+                    <span data-lang="en">Admin Login</span>
+                    <span data-lang="ar">تسجيل دخول المسؤول</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="search-container">
+                    <input type="text" id="search-input" placeholder="Search locations...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="filter-container">
+                    <h3 data-lang="en">Filter by Type</h3>
+                    <h3 data-lang="ar">تصفية حسب النوع</h3>
+                    <div id="type-filters" class="filter-options">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                    
+                    <h3 data-lang="en">Filter by Governorate</h3>
+                    <h3 data-lang="ar">تصفية حسب المحافظة</h3>
+                    <div id="governorate-filters" class="filter-options">
+                        <!-- Will be populated dynamically -->
+                    </div>
+                    
+                    <button id="reset-filters" class="btn">
+                        <span data-lang="en">Reset Filters</span>
+                        <span data-lang="ar">إعادة ضبط الفلاتر</span>
+                    </button>
+                </div>
+                
+                <div class="location-list">
+                    <h3 data-lang="en">Locations</h3>
+                    <h3 data-lang="ar">المواقع</h3>
+                    <ul id="locations-list">
+                        <!-- Will be populated dynamically -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="map"></div>
+        </div>
+        
+        <footer>
+            <p>
+                <span data-lang="en">&copy; 2025 C3A SC. All Rights Reserved.</span>
+                <span data-lang="ar">© 2025 كايرو ثري ايه. جميع الحقوق محفوظة.</span>
+            </p>
+        </footer>
+    </div>
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 data-lang="en">Admin Login</h2>
+            <h2 data-lang="ar">تسجيل دخول المسؤول</h2>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username" data-lang="en">Username</label>
+                    <label for="username" data-lang="ar">اسم المستخدم</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password" data-lang="en">Password</label>
+                    <label for="password" data-lang="ar">كلمة المرور</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit" class="btn">
+                    <span data-lang="en">Login</span>
+                    <span data-lang="ar">تسجيل الدخول</span>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Location Details Modal -->
+    <div id="location-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="location-details">
+                <!-- Will be populated dynamically -->
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/map.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

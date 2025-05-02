@@ -1,0 +1,60 @@
+/* RTL Styles for Arabic Language */
+body {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif, 'Arial Unicode MS';
+}
+
+.logo-container {
+    flex-direction: row-reverse;
+}
+
+#company-logo {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+.controls {
+    flex-direction: row-reverse;
+}
+
+.search-container {
+    flex-direction: row-reverse;
+}
+
+#search-input {
+    border-radius: 0 4px 4px 0;
+}
+
+#search-button {
+    border-radius: 4px 0 0 4px;
+}
+
+.sidebar {
+    border-right: none;
+    border-left: 1px solid var(--border-color);
+}
+
+.detail-item strong {
+    text-align: left;
+}
+
+.close {
+    right: auto;
+    left: 1rem;
+}
+
+/* Hide English, Show Arabic */
+[data-lang="en"] {
+    display: none;
+}
+
+[data-lang="ar"] {
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        border-left: none;
+    }
+}

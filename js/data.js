@@ -568,19 +568,45 @@ const adminCredentials = {
     username: "admin",
     password: "admin123"
 };
+// data version — update this string each time you change `locations`
+const DATA_VERSION = '2026-01-11-v1';
+const DATA_VERSION_KEY = 'companyLocationsVersion';
 
-// Function to save locations to localStorage
+// save / load
 function saveLocations(locationData) {
-    localStorage.setItem('companyLocations', JSON.stringify(locationData));
+  localStorage.setItem('companyLocations', JSON.stringify(locationData));
 }
-
-// Function to load locations from localStorage
 function loadLocations() {
-    const savedLocations = localStorage.getItem('companyLocations');
-    return savedLocations ? JSON.parse(savedLocations) : locations;
+  const saved = localStorage.getItem('companyLocations');
+  return saved ? JSON.parse(saved) : locations;
 }
 
-// Initialize localStorage with sample data if it doesn't exist
-if (!localStorage.getItem('companyLocations')) {
-    saveLocations(locations);
+// optional: merge saved + latest by id instead of full overwrite
+function mergeLocations(savedArr, latestArr) {
+  const map = new Map();
+  (savedArr || []).forEach(item => map.set(item.id, item));
+  (latestArr || []).forEach(item => map.set(item.id, item)); // latest wins
+  return Array.from(map.values());
 }
+
+// ensure client has latest data (safe access)
+(function ensureLatestData() {
+  try {
+    const savedVersion = localStorage.getItem(DATA_VERSION_KEY);
+
+    if (savedVersion !== DATA_VERSION) {
+      // Option A — overwrite completely:
+      saveLocations(locations);
+
+      // Option B — merge instead of overwrite (uncomment to use)
+      // const existing = JSON.parse(localStorage.getItem('companyLocations') || '[]');
+      // const merged = mergeLocations(existing, locations);
+      // saveLocations(merged);
+
+      localStorage.setItem(DATA_VERSION_KEY, DATA_VERSION);
+    }
+  } catch (err) {
+    // localStorage might be unavailable (e.g. strict privacy mode)
+    console.warn('Could not update stored locations:', err);
+  }
+})();

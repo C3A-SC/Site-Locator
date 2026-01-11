@@ -87,13 +87,13 @@ const locations = [
     },
     {
         "id": 1746130306858,
-        "name": "ثلاجه شمال الدلتا",
+        "name": "ثلاجه الاسكندرية",
         "type": "Warehouse",
         "address": "طريق القاهرة الاسكندرية الزراعي",
         "governorate": "Alexandria",
         "coordinates": {
-            "lat": 31.126,
-            "lng": 30.1079
+            "lat": 31.173313,
+            "lng": 29.946913
         },
         "contactPerson": "",
         "contactInfo": {
